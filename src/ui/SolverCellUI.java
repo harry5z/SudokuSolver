@@ -23,12 +23,18 @@ public class SolverCellUI extends JButton {
 				if (input < 1 || input > 9) {
 					throw new NumberFormatException();
 				}
-				cell.setInitialValue(input);
+				this.cell.setInitialValue(input);
 				update();
 			} catch (NumberFormatException exception) {
 				JOptionPane.showConfirmDialog(null, "Must be an integer from 1 to 9");
 			}
 		});
+	}
+	
+	public void setNewCell(Cell cell) {
+		this.cell = cell;
+		this.setBackground(null);
+		this.setText(null);
 	}
 	
 	public void update() {
@@ -40,8 +46,6 @@ public class SolverCellUI extends JButton {
 			}
 			this.setFont(new Font(Font.MONOSPACED, Font.BOLD, 40));
 			this.setText(Integer.toString(cell.getValue()));
-		} else {
-			repaint();
 		}
 	}
 }

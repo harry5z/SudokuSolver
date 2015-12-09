@@ -38,13 +38,14 @@ public class SolverPanelUI extends JPanel implements SolverListener {
 	}
 
 	@Override
-	public void onSuccess(Solver solver) {
+	public void onSuccess(long time) {
 		board.refresh();
-		JOptionPane.showConfirmDialog(null, "老子花了" + solver.getTime() + "毫秒算完了，拿去装逼吧");
+		JOptionPane.showMessageDialog(null, "老子花了" + time + "毫秒算完了，拿去装逼吧");
 	}
 
 	@Override
-	public void onFailure(Solver solver) {
-		JOptionPane.showConfirmDialog(null, "老子算不出来，目测是你的起始条件傻逼了");
+	public void onFailure(String message) {
+		board.refresh();
+		JOptionPane.showMessageDialog(null, message);
 	}
 }

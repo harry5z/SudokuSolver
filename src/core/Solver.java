@@ -11,20 +11,14 @@ public class Solver {
 	
 	private Board board;
 	private Set<SolverListener> listeners;
-	private long time;
 	
 	public Solver() {
 		this.board = new Board();
 		this.listeners = new HashSet<SolverListener>();
-		this.time = 0;
 	}
 	
 	public Board getBoard() {
 		return board;
-	}
-	
-	public long getTime() {
-		return time;
 	}
 	
 	public void addSolverListener(SolverListener listener) {
@@ -36,7 +30,7 @@ public class Solver {
 	}
 
 	public void start() {
-		this.time = System.currentTimeMillis();
+		long time = System.currentTimeMillis();
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				Cell cell = board.getCell(i, j);
@@ -53,9 +47,9 @@ public class Solver {
 		time = System.currentTimeMillis() - time;
 		for (SolverListener listener : listeners) {
 			if (solved) {
-				listener.onSuccess(this);
+				listener.onSuccess(time);
 			} else {
-				listener.onFailure(this);
+				listener.onFailure("老子算不出来，目测是你的起始条件傻逼了");
 			}
 		}
 	}
@@ -199,6 +193,5 @@ public class Solver {
 
 	public void newBoard() {
 		board = new Board();
-		time = 0;
 	}
 }

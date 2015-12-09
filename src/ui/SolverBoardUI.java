@@ -26,17 +26,9 @@ public class SolverBoardUI extends JPanel {
 	public void setNewBoard(Board board) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				this.remove(grid[i][j]);
+				grid[i][j].setNewBoard(board, i * 3, j * 3);
 			}
 		}
-		this.validate();
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				this.grid[i][j] = new InnerBoard(board, i * 3, j * 3);
-				this.add(this.grid[i][j]);
-			}
-		}
-		refresh();
 	}
 	
 	public void refresh() {
@@ -63,6 +55,14 @@ public class SolverBoardUI extends JPanel {
 				}
 			}
 			this.setBorder(new LineBorder(Color.BLACK, 5));
+		}
+		
+		void setNewBoard(Board board, int h, int v) {
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 3; j++) {
+					this.grid[i][j].setNewCell(board.getCell(i + h, j + v));
+				}
+			}
 		}
 		
 		void refresh() {
