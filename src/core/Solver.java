@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import exceptions.CandidateNotFoundException;
 import exceptions.NoCandidateException;
 
 public class Solver {
@@ -37,7 +36,7 @@ public class Solver {
 				if (cell.isFixed()) {
 					try {
 						removeCandidate(i, j, cell.getValue());
-					} catch (CandidateNotFoundException | NoCandidateException e) {
+					} catch (NoCandidateException e) {
 						return;
 					}
 				}
@@ -54,7 +53,7 @@ public class Solver {
 		}
 	}
 	
-	private void removeCandidate(int i, int j, int candidate) throws NoCandidateException, CandidateNotFoundException {
+	private void removeCandidate(int i, int j, int candidate) throws NoCandidateException {
 		for (int x = 0; x < 9; x++) {
 			board.getCell(x, j).removeCandidate(candidate);
 		}
@@ -133,7 +132,7 @@ public class Solver {
 			toTry.fixCandidate(tryValue);
 			try {
 				removeCandidate(toTry.getX(), toTry.getY(), tryValue);
-			} catch (NoCandidateException | CandidateNotFoundException e) {
+			} catch (NoCandidateException e) {
 				toTry.unfix();
 				addCandidate(toTry.getX(), toTry.getY(), tryValue);
 				return false;

@@ -11,7 +11,7 @@ import core.Cell;
 
 public class SolverCellUI extends JButton {
 
- 	private static final long serialVersionUID = -7335397923499587457L;
+ 	private static final long serialVersionUID = 1001;
 	private Cell cell;
 	
 	public SolverCellUI(Cell cell) {
@@ -24,9 +24,9 @@ public class SolverCellUI extends JButton {
 					throw new NumberFormatException();
 				}
 				this.cell.setInitialValue(input);
-				update();
+				update(false);
 			} catch (NumberFormatException exception) {
-				JOptionPane.showConfirmDialog(null, "Must be an integer from 1 to 9");
+				JOptionPane.showConfirmDialog(null, "Must be an integer from 1 to 9", "Error", JOptionPane.OK_CANCEL_OPTION);
 			}
 		});
 	}
@@ -35,9 +35,10 @@ public class SolverCellUI extends JButton {
 		this.cell = cell;
 		this.setBackground(null);
 		this.setText(null);
+		this.setEnabled(true);
 	}
 	
-	public void update() {
+	public void update(boolean freeze) {
 		if (cell.isFixed()) {
 			if (cell.isInitial()) {
 				this.setBackground(Color.WHITE);
@@ -46,6 +47,7 @@ public class SolverCellUI extends JButton {
 			}
 			this.setFont(new Font(Font.MONOSPACED, Font.BOLD, 40));
 			this.setText(Integer.toString(cell.getValue()));
+			this.setEnabled(!freeze);
 		}
 	}
 }

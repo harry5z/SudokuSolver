@@ -10,7 +10,7 @@ import core.Board;
 
 public class SolverBoardUI extends JPanel {
 
-	private static final long serialVersionUID = -153847978792230232L;
+	private static final long serialVersionUID = 1001;
 	private InnerBoard[][] grid;
 	public SolverBoardUI(Board board) {
 		this.grid = new InnerBoard[3][3];
@@ -31,10 +31,10 @@ public class SolverBoardUI extends JPanel {
 		}
 	}
 	
-	public void refresh() {
+	public void refresh(boolean freeze) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				this.grid[i][j].refresh();
+				this.grid[i][j].refresh(freeze);
 			}
 		}
 		repaint();
@@ -42,7 +42,7 @@ public class SolverBoardUI extends JPanel {
 	
 	private static class InnerBoard extends JPanel {
 		
-		private static final long serialVersionUID = 532643791918708284L;
+		private static final long serialVersionUID = 1001;
 		private SolverCellUI[][] grid;
 
 		InnerBoard(Board board, int h, int v) {
@@ -65,10 +65,10 @@ public class SolverBoardUI extends JPanel {
 			}
 		}
 		
-		void refresh() {
+		void refresh(boolean freeze) {
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
-					this.grid[i][j].update();
+					this.grid[i][j].update(freeze);
 				}
 			}
 		}

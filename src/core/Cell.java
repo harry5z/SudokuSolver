@@ -3,7 +3,6 @@ package core;
 import java.util.HashSet;
 import java.util.Set;
 
-import exceptions.CandidateNotFoundException;
 import exceptions.InvalidInputException;
 import exceptions.NoCandidateException;
 
@@ -54,7 +53,7 @@ public class Cell {
 		fixed = false;
 	}
 	
-	public void removeCandidate(int candidate) throws CandidateNotFoundException, NoCandidateException {
+	public void removeCandidate(int candidate) throws NoCandidateException {
 		if (fixed) {
 			return;
 		}
