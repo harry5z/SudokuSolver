@@ -26,7 +26,7 @@ public class SolverCellUI extends JButton {
 				this.cell.setInitialValue(input);
 				update(false);
 			} catch (NumberFormatException exception) {
-				JOptionPane.showConfirmDialog(null, "Must be an integer from 1 to 9", "Error", JOptionPane.OK_CANCEL_OPTION);
+				JOptionPane.showMessageDialog(null, "Must be an integer from 1 to 9");
 			}
 		});
 	}
